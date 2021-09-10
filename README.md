@@ -52,10 +52,10 @@ Accessing with sufficient balance:
 ![api](./doc/access-monetized-api-with-sufficent-balance.png "Accessing with sufficient balance:")
 
 
-Checking current balance after successfully invoking monetized apis:
+Checking new balance after successfully invoking monetized apis:
 
 
-![api](./doc/check-balance.png "Checking current balance")
+![api](./doc/updated-balance.png "Checking current balance")
 
 
 Notes:
