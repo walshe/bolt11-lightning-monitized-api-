@@ -30,9 +30,10 @@ Trying to invoke monetized api with insufficient balance:
 ![api](./doc/access-monetized-api-with-insufficient-balance.png "Trying to invoke monetized api with insufficient balance:")
 
 
-Checking current balance:
+Checking current empty balance:
 
-![api](./doc/check-balance.png "Checking current balance")
+
+![api](./doc/empty-balance.png "Checking current balance")
 
 
 Generating a Bolt invoice to pay/deposit:
@@ -40,11 +41,21 @@ Generating a Bolt invoice to pay/deposit:
 ![api](./doc/generate-Bolt11-invoice-for-offine-payment.png "Generating a Bolt invoice to pay/deposit")
 
 
+Checking current balance after payment of invoice:
+
+
+![api](./doc/invoice-paid.png "Checking new balance")
+
+
 Accessing with sufficient balance:
 
 ![api](./doc/access-monetized-api-with-sufficent-balance.png "Accessing with sufficient balance:")
 
 
+Checking current balance after successfully invoking monetized apis:
+
+
+![api](./doc/check-balance.png "Checking current balance")
 
 
 Notes:
