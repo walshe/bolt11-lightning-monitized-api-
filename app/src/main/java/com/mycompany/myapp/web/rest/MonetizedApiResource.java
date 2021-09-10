@@ -18,7 +18,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -153,17 +155,24 @@ public class MonetizedApiResource {
         );
     }
 
-    /**
-     * {@code GET  /monetized-apis} : get all the monetizedApis.
-     *
-     * @param pageable the pagination information.
-     * @param criteria the criteria which the requested entities should match.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of monetizedApis in body.
-     */
+//    /**
+//     * {@code GET  /monetized-apis} : get all the monetizedApis.
+//     *
+//     * @param pageable the pagination information.
+//     * @param criteria the criteria which the requested entities should match.
+//     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of monetizedApis in body.
+//     */
+//    @GetMapping("/monetized-apis")
+//    public ResponseEntity<List<MonetizedApiDTO>> getAllMonetizedApis(MonetizedApiCriteria criteria, Pageable pageable) {
+//        log.debug("REST request to get MonetizedApis by criteria: {}", criteria);
+//        Page<MonetizedApiDTO> page = monetizedApiQueryService.findByCriteria(criteria, pageable);
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
+//        return ResponseEntity.ok().headers(headers).body(page.getContent());
+//    }
+
     @GetMapping("/monetized-apis")
-    public ResponseEntity<List<MonetizedApiDTO>> getAllMonetizedApis(MonetizedApiCriteria criteria, Pageable pageable) {
-        log.debug("REST request to get MonetizedApis by criteria: {}", criteria);
-        Page<MonetizedApiDTO> page = monetizedApiQueryService.findByCriteria(criteria, pageable);
+    public ResponseEntity<List<MonetizedApiDTO>> getAllMonetizedApis() {
+        Page<MonetizedApiDTO> page = monetizedApiService.findAll(PageRequest.of(0,1000, Sort.Direction.ASC, "uri"));
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page);
         return ResponseEntity.ok().headers(headers).body(page.getContent());
     }

@@ -45,7 +45,7 @@ export const InvoiceUpdate = (props: RouteComponentProps<{ id: string }>) => {
     const entity = {
       ...invoiceEntity,
       ...values,
-      user: users.find(it => it.id.toString() === values.userId.toString()),
+      user: null,
     };
 
     if (isNew) {
@@ -78,17 +78,17 @@ export const InvoiceUpdate = (props: RouteComponentProps<{ id: string }>) => {
             <p>Loading...</p>
           ) : (
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
-              {!isNew ? <ValidatedField name="id" required readOnly id="invoice-id" label="ID" validate={{ required: true }} /> : null}
-              <ValidatedField
+              {!isNew ? <ValidatedField name="id" readOnly id="invoice-id" label="ID" validate={{ required: true }} /> : null}
+              { /*<ValidatedField
                 label="Bolt Invoice"
                 id="invoice-boltInvoice"
                 name="boltInvoice"
                 data-cy="boltInvoice"
                 type="text"
                 validate={{
-                  required: { value: true, message: 'This field is required.' },
+                  required: { value: false, message: 'This field is required.' },
                 }}
-              />
+              /> */ }
               <ValidatedField
                 label="Sats"
                 id="invoice-sats"
@@ -100,19 +100,19 @@ export const InvoiceUpdate = (props: RouteComponentProps<{ id: string }>) => {
                   validate: v => isNumber(v) || 'This field should be a number.',
                 }}
               />
-              <ValidatedField label="Settled" id="invoice-settled" name="settled" data-cy="settled" check type="checkbox" />
-              <ValidatedField label="Paid By Pub Key" id="invoice-paidByPubKey" name="paidByPubKey" data-cy="paidByPubKey" type="text" />
-              <ValidatedField
+              {/*<ValidatedField label="Settled" id="invoice-settled" name="settled" data-cy="settled" check type="checkbox" /> */}
+              { /* <ValidatedField label="Paid By Pub Key" id="invoice-paidByPubKey" name="paidByPubKey" data-cy="paidByPubKey" type="text" /> */ }
+              { /* <ValidatedField
                 label="Created At"
                 id="invoice-createdAt"
                 name="createdAt"
                 data-cy="createdAt"
                 type="date"
                 validate={{
-                  required: { value: true, message: 'This field is required.' },
+                  required: { value: false, message: 'This field is required.' },
                 }}
-              />
-              <ValidatedField label="Settled At" id="invoice-settledAt" name="settledAt" data-cy="settledAt" type="date" />
+              /> */ }
+              { /* <ValidatedField label="Settled At" id="invoice-settledAt" name="settledAt" data-cy="settledAt" type="date" />
               <ValidatedField id="invoice-user" name="userId" data-cy="user" label="User" type="select" required>
                 <option value="" key="0" />
                 {users
@@ -123,7 +123,7 @@ export const InvoiceUpdate = (props: RouteComponentProps<{ id: string }>) => {
                     ))
                   : null}
               </ValidatedField>
-              <FormText>This field is required.</FormText>
+              <FormText>This field is required.</FormText> */ }
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/invoice" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

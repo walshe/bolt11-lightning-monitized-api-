@@ -7,6 +7,8 @@ import com.mycompany.myapp.repository.UserRepository;
 import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.dto.InvoiceDTO;
 import com.mycompany.myapp.service.mapper.InvoiceMapper;
+
+import java.time.LocalDate;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,10 +32,13 @@ public class InvoiceService {
 
     private final UserRepository userRepository;
 
-    public InvoiceService(InvoiceRepository invoiceRepository, InvoiceMapper invoiceMapper,UserRepository userRepository) {
+    private final ImperviousLightningService imperviousLightningService;
+
+    public InvoiceService(InvoiceRepository invoiceRepository, InvoiceMapper invoiceMapper,UserRepository userRepository, ImperviousLightningService imperviousLightningService) {
         this.invoiceRepository = invoiceRepository;
         this.invoiceMapper = invoiceMapper;
         this.userRepository = userRepository;
+        this.imperviousLightningService = imperviousLightningService;
     }
 
     /**
@@ -46,9 +51,13 @@ public class InvoiceService {
         String userLogin = SecurityUtils.getCurrentUserLogin().get();
         log.info("User is " + userLogin);
         User user = userRepository.findOneByLogin(userLogin).orElseThrow();
+        invoiceDTO.setBoltInvoice(imperviousLightningService.generateInvoice(invoiceDTO.getSats()));
         log.debug("Request to save Invoice : {}", invoiceDTO);
         Invoice invoice = invoiceMapper.toEntity(invoiceDTO);
         invoice.setUser(user);
+        invoice.createdAt(LocalDate.now());
+
+
         invoice = invoiceRepository.save(invoice);
         return invoiceMapper.toDto(invoice);
     }

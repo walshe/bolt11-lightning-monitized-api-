@@ -9,7 +9,7 @@ export interface IInvoice {
   paidByPubKey?: string | null;
   createdAt?: string;
   settledAt?: string | null;
-  user?: IUser;
+  user?: IUser | null;
 }
 
 export const defaultValue: Readonly<IInvoice> = {

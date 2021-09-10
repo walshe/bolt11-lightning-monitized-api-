@@ -10,13 +10,10 @@ import com.mycompany.myapp.security.SecurityUtils;
 import com.mycompany.myapp.service.dto.BalanceDTO;
 import com.mycompany.myapp.service.mapper.BalanceMapper;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import com.mycompany.myapp.web.rest.errors.InsufficientBalanceAlertException;
-import liquibase.pro.packaged.B;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -74,7 +71,7 @@ public class BalanceService {
 
                     //call impervious and find out if newly settled
                     //if settled then set invoice.settled = true, pubkey etc where settledTimestamp = null (this fixes optimistic concurrency issue)
-                    if(imperviousLightningService.isBoltinvoicePaid( unsettledInvoice.getBoltInvoice())){
+                    if(imperviousLightningService.isBoltInvoicePaid( unsettledInvoice.getBoltInvoice())){
                         invoiceRepository.updateSettledAndSettledAtByIdWhereSettledAtIsNull(unsettledInvoice.getId(), LocalDate.now());
                          // increment users balance in balance table
                         balanceRepository.incrementSats(existingUser, unsettledInvoice.getSats());

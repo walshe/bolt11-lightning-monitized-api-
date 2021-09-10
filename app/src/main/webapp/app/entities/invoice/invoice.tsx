@@ -171,9 +171,9 @@ export const Invoice = (props: RouteComponentProps<{ url: string }>) => {
                         <Button tag={Link} to={`${match.url}/${invoice.id}`} color="info" size="sm" data-cy="entityDetailsButton">
                           <FontAwesomeIcon icon="eye" /> <span className="d-none d-md-inline">View</span>
                         </Button>
-                        <Button tag={Link} to={`${match.url}/${invoice.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
+                        { /*<Button tag={Link} to={`${match.url}/${invoice.id}/edit`} color="primary" size="sm" data-cy="entityEditButton">
                           <FontAwesomeIcon icon="pencil-alt" /> <span className="d-none d-md-inline">Edit</span>
-                        </Button>
+                        </Button> */ }
                         <Button tag={Link} to={`${match.url}/${invoice.id}/delete`} color="danger" size="sm" data-cy="entityDeleteButton">
                           <FontAwesomeIcon icon="trash" /> <span className="d-none d-md-inline">Delete</span>
                         </Button>

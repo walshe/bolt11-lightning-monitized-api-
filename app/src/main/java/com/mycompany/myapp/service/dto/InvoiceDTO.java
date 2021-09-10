@@ -12,18 +12,18 @@ public class InvoiceDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
+    //@NotNull
     private String boltInvoice;
 
     @NotNull
     private Long sats;
 
-    @NotNull
+    //@NotNull
     private Boolean settled;
 
     private String paidByPubKey;
 
-    @NotNull
+    //@NotNull
     private LocalDate createdAt;
 
     private LocalDate settledAt;
