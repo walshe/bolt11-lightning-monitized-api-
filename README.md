@@ -18,6 +18,35 @@ If a user does not have a sifficent balance to invoke an api then a 402 Http cod
 
 
 
+## Example
+
+Api's currently configured as monetized:
+
+![Game](./doc/monetized-apis-currently-configured-by-admin "Api's currently configured as monetized")
+
+
+Trying to invoke monetized api with insufficient balance:
+
+![Game](./doc/access-monetized-api-with-insufficient-balance "Trying to invoke monetized api with insufficient balance:")
+
+
+Checking current balance:
+
+![Game](./doc/check-balance "Checking current balance")
+
+
+Generating a Bolt invoice to pay/deposit:
+
+![Game](./doc/generate-Bolt11-invoice-for-offine-payment "Generating a Bolt invoice to pay/deposit")
+
+
+Accessing with sufficient balance:
+
+![Game](./doc/access-monetized-api-with-sufficent-balance "Accessing with sufficient balance:")
+
+
+
+
 Notes:
 
 App built using JHipster stack React.js, Spring Boot, MySQL.

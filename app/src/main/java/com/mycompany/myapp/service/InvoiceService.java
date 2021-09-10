@@ -55,6 +55,7 @@ public class InvoiceService {
         log.debug("Request to save Invoice : {}", invoiceDTO);
         Invoice invoice = invoiceMapper.toEntity(invoiceDTO);
         invoice.setUser(user);
+        invoice.setSettled(false);
         invoice.createdAt(LocalDate.now());
 
 
