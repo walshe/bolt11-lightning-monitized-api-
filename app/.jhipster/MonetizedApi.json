@@ -1,0 +1,32 @@
+{
+  "name": "MonetizedApi",
+  "fields": [
+    {
+      "fieldName": "method",
+      "fieldType": "Method",
+      "fieldValues": "GET,POST,PUT,PATCH,DELETE",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "uri",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "priceInSats",
+      "fieldType": "Long",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "monetized_api",
+  "dto": "mapstruct",
+  "pagination": "infinite-scroll",
+  "service": "serviceClass",
+  "jpaMetamodelFiltering": true,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": ["monetizedapi"],
+  "changelogDate": "20210909164622"
+}
