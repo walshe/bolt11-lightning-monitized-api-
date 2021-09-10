@@ -22,27 +22,27 @@ If a user does not have a sifficent balance to invoke an api then a 402 Http cod
 
 Api's currently configured as monetized:
 
-![Game](./doc/monetized-apis-currently-configured-by-admin "Api's currently configured as monetized")
+![api](./doc/monetized-apis-currently-configured-by-admin.png "Api's currently configured as monetized")
 
 
 Trying to invoke monetized api with insufficient balance:
 
-![Game](./doc/access-monetized-api-with-insufficient-balance "Trying to invoke monetized api with insufficient balance:")
+![api](./doc/access-monetized-api-with-insufficient-balance.png "Trying to invoke monetized api with insufficient balance:")
 
 
 Checking current balance:
 
-![Game](./doc/check-balance "Checking current balance")
+![api](./doc/check-balance.png "Checking current balance")
 
 
 Generating a Bolt invoice to pay/deposit:
 
-![Game](./doc/generate-Bolt11-invoice-for-offine-payment "Generating a Bolt invoice to pay/deposit")
+![api](./doc/generate-Bolt11-invoice-for-offine-payment.png "Generating a Bolt invoice to pay/deposit")
 
 
 Accessing with sufficient balance:
 
-![Game](./doc/access-monetized-api-with-sufficent-balance "Accessing with sufficient balance:")
+![api](./doc/access-monetized-api-with-sufficent-balance.png "Accessing with sufficient balance:")
 
 
 
