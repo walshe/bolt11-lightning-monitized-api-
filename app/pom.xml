@@ -562,7 +562,8 @@
                             <image>adoptopenjdk:11-jre-hotspot</image>
                         </from>
                         <to>
-                            <image>monetizedapi:latest</image>
+<!--                            <image>monetizedapi:latest</image>-->
+                            <image>docker.io/emmettboylesoftware/monetizedapi:latest</image>
                         </to>
                         <container>
                             <entrypoint>
