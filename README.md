@@ -65,9 +65,19 @@ App built using JHipster stack React.js, Spring Boot, MySQL.
 App requires access to an Impervious Node (https://www.impervious.ai/) which in turn needs to be hooked up to a BTC lightning node.
 
 Polar (https://lightningpolar.com/) can be used to run a local lightning node for development.
+Lightning Nodes require the following extra options enabled:
+
+	lnd
+	..
+	..
+	  --accept-amp
+  	  --accept-keysend  
 
 Impervious code is encapsulated in ImperviousLightningService.java and hardcoded to access Impervious node at http://127.0.0.1:8882
 
 A `BalanceInterceptor` (impl of org.springframework.web.servlet.HandlerInterceptor) runs preHandles any request to apis to check if they are monetized. If they are monetized then it checks if the user has sufficient balance. If the user has no sufficient balance it proceeds to check any unsettled invoices that the user has associated with them.
 
 The BalanceInterceptor also 'charges' the user the required number of sats in the `postHandle` method as well as recording the invation of the api.
+
+
+There is quite a bit of database access that occurs during each api invocation and there is a lot of scope for improvements in that area like caching etc. This is beyond the scope of this POC for now.
