@@ -1,0 +1,10 @@
+services:
+  monetizedapi:
+    image: emmettboylesoftware/monetizedapi:latest
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=dev,api-docs
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=false
+      - JHIPSTER_SLEEP=30
+    ports:
+      - "8080:8080"

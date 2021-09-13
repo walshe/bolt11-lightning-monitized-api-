@@ -1,0 +1,51 @@
+services:
+  impervious:
+    image: impant/imp-releases:v0.1.4
+    volumes:
+      - /Users/Emmett/dev/btc/impervious/config/alice-config-docker.yml:/app/config/config.yml 
+      - /Users/Emmett/.polar/networks/1/volumes/lnd/alice/tls.cert:/app/lnd/tls.cert
+      - /Users/Emmett/.polar/networks/1/volumes/lnd/alice/data/chain/bitcoin/regtest/admin.macaroon:/app/lnd/admin.macaroon
+    ports:
+      - "8881:8881"
+      - "8882:8882"
+  monetizedapi:
+    image: emmettboylesoftware/monetizedapi:latest
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://monetizedapi-mysql:3306/monetizedapi?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - SPRING_LIQUIBASE_URL=jdbc:mysql://monetizedapi-mysql:3306/monetizedapi?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC&createDatabaseIfNotExist=true
+      - JHIPSTER_SLEEP=30
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "monetizedapi-mysql"  
+      - "impervious"  
+  monetizedapi-mysql:
+    image: mysql:8.0.25
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_DATABASE=monetizedapi
+    command: mysqld --lower_case_table_names=1 --skip-ssl --character_set_server=utf8mb4 --explicit_defaults_for_timestamp
+
+  # jhipster-registry:
+  #   image: jhipster/jhipster-registry:v6.8.0
+  #   volumes:
+  #     - ./central-server-config:/central-config
+  #   # By default the JHipster Registry runs with the "dev" and "native"
+  #   # Spring profiles.
+  #   # "native" profile means the filesystem is used to store data, see
+  #   # http://cloud.spring.io/spring-cloud-config/spring-cloud-config.html
+  #   environment:
+  #     - _JAVA_OPTIONS=-Xmx512m -Xms256m
+  #     - SPRING_PROFILES_ACTIVE=dev
+  #     - SPRING_SECURITY_USER_PASSWORD=
+  #     - JHIPSTER_REGISTRY_PASSWORD=
+  #     - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=native
+  #     - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_LOCATIONS=file:./central-config
+  #     # - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_TYPE=git
+  #     # - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_URI=https://github.com/jhipster/jhipster-registry/
+  #     # - SPRING_CLOUD_CONFIG_SERVER_COMPOSITE_0_SEARCH_PATHS=central-config
+  #   ports:
+  #     - 8761:8761
